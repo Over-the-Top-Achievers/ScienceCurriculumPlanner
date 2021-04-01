@@ -1,0 +1,22 @@
+{
+  "name": "sciencecurriculumplanner",
+  "version": "1.0.0",
+  "description": "A site where you plan your sciene curriculum",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Over-the-Top-Achievers/ScienceCurriculumPlanner.git"
+  },
+  "author": "Over The Top Achievers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Over-the-Top-Achievers/ScienceCurriculumPlanner/issues"
+  },
+  "homepage": "https://github.com/Over-the-Top-Achievers/ScienceCurriculumPlanner#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
