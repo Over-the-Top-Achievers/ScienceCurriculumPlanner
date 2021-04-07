@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {Router} from '@angular/router';
+import { FlexAlignStyleBuilder } from '@angular/flex-layout';
+
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,5 @@ import {Router} from '@angular/router';
 })
 
 export class AppComponent {
-  title = 'FOS-Curriculum-Planner';
-
-  constructor(private router:Router){}
-
-  goToPage(pageName:string):void{
-    this.router.navigate([`${pageName}`]);
-  }
+  
 }

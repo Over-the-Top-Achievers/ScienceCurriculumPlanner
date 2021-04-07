@@ -12,11 +12,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularMaterialModule } from './angular-material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SigninComponent } from './components/signin/signin.component';
+import { RouterModule } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SigninComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,24 +1,27 @@
-<div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
+<header></header>
 
-    <mat-card class="box">
+<mat-toolbar color="primary">
+    <span>Sign in to Faculty of Science Curriculum Planner</span>
+</mat-toolbar>
+
+<body class="main-wrapper" fxLayout="row" fxLayoutAlign="center">
+
+    <mat-card class="box" fxFlex="25%" style="height: 400px; vertical-align: middle; margin-top: 175px;">
         <mat-card-header>
-            <mat-card-title>SIGN IN TO YOUR ACCOUNT</mat-card-title>
+            <mat-card-title style="margin-left: 30px;">SIGN IN TO YOUR ACCOUNT</mat-card-title>
         </mat-card-header>
-
         <form class="example-form">
             <mat-card-content>
-                <mat-form-field class="example-full-width">
+                <mat-form-field class="example-full-width" style="margin-top: 32px; margin-left: 50px; font-size: 24px;">
                     <input matInput placeholder="Username">
                 </mat-form-field>
 
-                <mat-form-field class="example-full-width">
+                <mat-form-field class="example-full-width" style="margin-top: 16px; margin-left: 50px; font-size: 24px;">
                     <input matInput placeholder="Password">
                 </mat-form-field>
             </mat-card-content>
-            <button mat-stroked-button color="accent" class="btn-block">Sign-in</button>
+            <button mat-stroked-button color="accent" class="btn-block" style="vertical-align: middle; margin-top: 30px; margin-left: 45px; font-size: 16px;">Sign-in</button>
         </form>
     </mat-card>
-
-</div>
-
-<router-outlet></router-outlet>
+</body>
+<footer></footer>

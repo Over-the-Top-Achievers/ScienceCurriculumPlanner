@@ -20,11 +20,7 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'FOS-Curriculum-Planner'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('FOS-Curriculum-Planner');
-  });
+  
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
