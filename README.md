@@ -1,4 +1,5 @@
 ## Badges are to do done. 
+[![Node.js testing](https://github.com/Over-the-Top-Achievers/ScienceCurriculumPlanner/actions/workflows/main.yml/badge.svg)](https://github.com/Over-the-Top-Achievers/ScienceCurriculumPlanner/actions/workflows/main.yml)
 ## ScienceCurriculumPlanner
  A system that allows students to pick and plan their undergraduate degree.
 
