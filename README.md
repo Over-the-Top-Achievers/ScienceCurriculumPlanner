@@ -12,7 +12,15 @@
   To begin using the planner run 
   
   ```bash 
-  node index.js
+  node mongoCaller.js
+  ```
+  or on windows
+  ```bash 
+  node_modules\.bin\nodemon mongoCaller.js
+  ```
+  on linux 
+  ```bash 
+  ./node_modules/.bin/nodemon mongoCaller.js
   ```
   
   *note the project is still under heavy construction and this will likely change in the future*
