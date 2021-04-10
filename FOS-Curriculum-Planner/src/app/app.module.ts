@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
+import "node_modules/bootstrap/scss/bootstrap.scss"
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,12 +14,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SigninComponent } from './components/signin/signin.component';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
+import { AdminPageComponent } from './components/admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SigninComponent,
     HomeComponent,
+    AdminPageComponent,
   ],
   imports: [
     BrowserModule,
