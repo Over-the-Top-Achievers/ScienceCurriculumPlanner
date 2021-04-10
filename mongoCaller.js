@@ -4,7 +4,8 @@ const bodyParser= require('body-parser');
 const { response } = require('express');
 const app = express()
 
-var url = "mongodb://localhost:27017/";
+// var url = "mongodb://localhost:27017/";
+var url = "mongodb+srv://Dennisdb:11220011@cluster0.yp25l.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 MongoClient.connect(url, { useUnifiedTopology: true })
   .then(client => {
@@ -24,13 +25,41 @@ MongoClient.connect(url, { useUnifiedTopology: true })
     })
 
     app.get('/courses', (request, response) =>{
-        courseCollection.find(request.body).toArray()//searches the database for a course
-        .then(result =>{
-            response.render('index.ejs',{courses:result})//For display purposes
-        })
-        .catch(error => console.error(error))
+        console.log(request.body.courseCode)
+        if(request.body.courseCode===undefined){
+            courseCollection.find(request.body).toArray()//searches the database for a course
+            .then(result =>{
+                response.render('index.ejs',{courses:result})//For display purposes
+            })
+            .catch(error => console.error(error))
+             
+        }
+        else{
+            console.log("HElooooooooooooooooooo")
+            courseCollection.find(request.body.courseCode).toArray()//searches the database for a course
+            .then(result =>{
+                return response.json('found')
+            })
+            .then(result =>{
+                response.render('index.ejs',{courseSearch:result})//For display purposes
+            })
+            .catch(error => console.error(error))
+            }
+
        
     })
+
+    // app.get('/courses', (request, response) =>{
+    //     courseCollection.find(request.body.courseCode).toArray()//searches the database for a course
+    //     .then(result =>{
+    //         return response.json('found')
+    //     })
+    //     .then(result =>{
+    //         response.render('index.ejs',{courseSearch:result})//For display purposes
+    //     })
+    //     .catch(error => console.error(error))
+       
+    // })
 
     app.put('/courses', (request, response) => {
         courseCollection.findOneAndUpdate(
@@ -76,42 +105,6 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 // POST -> Put something new onto the server (upload an image)
 // DELETE -> Delete something from the server (Delete a course)
 
-
-
-// function modifyCourse()
-
-// app.get('/courses/:code', (request, response) => {
-//     response.end(courseCode(request))
-// })
-
-// app.use(bodyParser.urlencoded({ extended: true }))
-
-// app.post('/courses', (request, response) =>{
-//     console.log(request.body)
-// })
-
-// app.put('/courses/:code', (request, response) =>{
-//     response.send(courseCode(request))//fix this
-// })
-
-// app.delete('/courses/:code', (request, response) => {
-//     response.send(courseCode(request))
-//   })
-function searchCourse(request) {//look the database and return some courses
-    return JSON.stringify(request.params.code)
-}
-
-function updateCourse(){
-
-}
-
-function deleteCourse(){
-
-}
-
-function editCourse(){
-
-}
 app.get('/', (req, res) => {
 res.sendFile(__dirname + '/views/index.ejs')
 })
