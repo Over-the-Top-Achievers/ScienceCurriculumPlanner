@@ -25,41 +25,27 @@ MongoClient.connect(url, { useUnifiedTopology: true })
     })
 
     app.get('/courses', (request, response) =>{
+        console.log(response.body)
         console.log(request.body.courseCode)
-        if(request.body.courseCode===undefined){
-            courseCollection.find(request.body).toArray()//searches the database for a course
-            .then(result =>{
-                response.render('index.ejs',{courses:result})//For display purposes
-            })
-            .catch(error => console.error(error))
-             
-        }
-        else{
-            console.log("HElooooooooooooooooooo")
-            courseCollection.find(request.body.courseCode).toArray()//searches the database for a course
-            .then(result =>{
-                return response.json('found')
-            })
-            .then(result =>{
-                response.render('index.ejs',{courseSearch:result})//For display purposes
-            })
-            .catch(error => console.error(error))
-            }
+        courseCollection.find(request.body).toArray()//searches the database for a course
+        .then(result =>{
+            
+            response.render('index.ejs',{courses:result})//For display purposes
+           
+        })
+        .catch(error => console.error(error))
 
-       
+    })
+    app.get('/coursesData', (request, response) =>{
+        courseCollection.find({}).toArray()//searches the database for a course
+        .then(result =>{
+            response.send(JSON.stringify(result))//For display purposes
+           
+        })
+        .catch(error => console.error(error))
+
     })
 
-    // app.get('/courses', (request, response) =>{
-    //     courseCollection.find(request.body.courseCode).toArray()//searches the database for a course
-    //     .then(result =>{
-    //         return response.json('found')
-    //     })
-    //     .then(result =>{
-    //         response.render('index.ejs',{courseSearch:result})//For display purposes
-    //     })
-    //     .catch(error => console.error(error))
-       
-    // })
 
     app.put('/courses', (request, response) => {
         courseCollection.findOneAndUpdate(

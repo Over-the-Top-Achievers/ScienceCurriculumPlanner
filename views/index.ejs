@@ -13,12 +13,12 @@
 
       <form action="/courses">
         <input type="text" placeholder="Course Code" name="courseCode">
-        <button type="submit" id="searchBtn">Search</button>
+        <button type="button" id="searchBtn">Search</button>
       </form>
 
     <h2> Courses </h2>
 
-    <ul class="courses">
+    <ul class="courses" id="courses">
       <!-- Loop through quotes -->
       <% for(var i = 0; i < courses.length; i++) {%>
         <li class="course">
