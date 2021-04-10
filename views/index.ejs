@@ -4,17 +4,18 @@
   <meta charset="UTF-8">
   <title>MY APP</title>
 </head>
-<body>
-    <form action="/courses" method="POST">
-        <input type="text" placeholder="Course Code" name="courseCode">
-        <input type="text" placeholder="NQF Level" name="nqf">
-        <button type="submit">Submit</button>
-      </form>
-
-      <form action="/courses">
-        <input type="text" placeholder="Course Code" name="courseCode">
-        <button type="button" id="searchBtn">Search</button>
-      </form>
+<body id="main">
+  <form action="/courses" method="POST">
+    <input type="text" placeholder="Course Code" name="courseCode">
+    <input type="text" placeholder="NQF Level" name="nqf">
+    <button type="submit">Submit</button>
+  </form>
+  
+  <form action="/courses">
+    <input type="text" id="searchTextBox" placeholder="Course Code" name="courseCode">
+    <button type="button" id="searchBtn">Search</button>
+  </form>
+  <div id="searchResult"></div>
 
     <h2> Courses </h2>
 
