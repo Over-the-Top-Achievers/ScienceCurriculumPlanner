@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MY APP</title>
+</head>
+<body>
+    <form action="/courses" method="POST">
+        <input type="text" placeholder="Course Code" name="courseCode">
+        <input type="text" placeholder="NQF Level" name="nqf">
+        <button type="submit">Submit</button>
+      </form>
+
+      <form action="/courses">
+        <input type="text" placeholder="Course Code" name="courseCode">
+        <button type="submit" id="searchBtn">Search</button>
+      </form>
+
+    <h2> Courses </h2>
+
+    <ul class="courses">
+      <!-- Loop through quotes -->
+      <% for(var i = 0; i < courses.length; i++) {%>
+        <li class="course">
+          <!-- Output name from the iterated quote object -->
+          <span><%= courses[i].courseCode %></span>:
+          <!-- Output quote from the iterated quote object -->
+          <span><%= courses[i].nqf %></span>
+        </li>
+      <% } %>
+    </ul>
+
+    <div>
+      <h2>Change course</h2>
+      <p>
+        Change a course to a 4th year course
+      </p>
+      <button id="update-button">Change Course</button>
+    </div>
+
+    <div>
+      <h2>Delete course</h2>
+      <p>
+        Delete a course from the courses database
+      </p>
+      <button id="delete-button">Delete course</button>
+    </div>
+
+    <div id='message'></div>
+    <script src="/main.js"></script>
+</body>
+</html>
