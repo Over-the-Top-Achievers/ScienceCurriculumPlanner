@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 language: TypeScript
 
  script: 
  console.log('Hello World')
 
  
+=======
+language: node_js
+node_js:
+ - "stable"
+ script: 
+ ng serve -o
+>>>>>>> 2a2696b6066656f97c89d0ef1549d8441da3c20f
