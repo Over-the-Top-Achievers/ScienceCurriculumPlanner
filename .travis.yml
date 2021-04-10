@@ -1,5 +1,1 @@
-language: TypeScript
-
- script: 
- console.log("Hello World")
-
+language: node_js
