@@ -1,9 +1,12 @@
-const update = document.querySelector('#update-button')
+const update = document.querySelector('#updateButton')
 const delete_course = document.querySelector('#delete-button')
 const messageDiv = document.querySelector('#message')
 const get = document.querySelector('#searchBtn')
 const search_box= document.querySelector('#searchTextBox')
 const delete_box= document.querySelector('#deleteTextBox')
+const update_old_code = document.querySelector('#updateOldCode')
+const update_new_code = document.querySelector('#updateNewCode')
+const update_new_nqf = document.querySelector('#updateNewNQF')
 var course_data;
 //Initial fetch of couse info as json data 
 fetch('/coursesData', { method: 'GET'})
@@ -22,8 +25,6 @@ get.addEventListener('click', _ => {
   for (let index = 0; index < course_data.length; index++) {
     const element = course_data[index];
     //TODO :test the type of this
-    console.log(element.courseCode)
-    console.log(search_code)
     //Adds div of json data of searched code
     if(element.courseCode==search_code){//NOTE: maybe ===
       var para = document.createElement("result");                       // Create a <p> node
@@ -37,12 +38,14 @@ get.addEventListener('click', _ => {
 
 update.addEventListener('click', _ => {
     // Send PUT Request here
+    //NOTE: not checking maybe check on clientside first
     fetch('/courses', {
         method:'put',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            courseCode: 'COMS5000',
-            nqf: 15
+            oldCourseCode: update_old_code.value,
+            newCourseCode: update_new_code.value,
+            newNQF: update_new_nqf.value 
           })
     })
   })

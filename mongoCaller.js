@@ -25,8 +25,6 @@ MongoClient.connect(url, { useUnifiedTopology: true })
     })
 
     app.get('/courses', (request, response) =>{
-        console.log(response.body)
-        console.log(request.body.courseCode)
         courseCollection.find(request.body).toArray()//searches the database for a course
         .then(result =>{
             
@@ -49,20 +47,18 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 
     app.put('/courses', (request, response) => {
         courseCollection.findOneAndUpdate(
-            {courseCode:'COMS3000'},
+            {courseCode:request.body.oldCourseCode},
             {
                 $set:{
-                    courseCode:request.body.courseCode,//use this to update the info in the database
-                    nqf:request.body.nqf
+                    courseCode:request.body.newCourseCode,//use this to update the info in the database
+                    nqf:request.body.newNQF
                 }
             },
-            {
-                upsert:true//use this if we want to add a new entry if none of the queried entries exist
-            }
+            //TODO:error message if not in database
+            // {
+            //     upsert:true//use this if we want to add a new entry if none of the queried entries exist
+            // }
         )
-        .then(result =>{
-            console.log(result)
-        })
         .catch(error => console.error(error))
     })
 
