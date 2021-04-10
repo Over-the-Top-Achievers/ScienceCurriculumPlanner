@@ -7,6 +7,9 @@ const delete_box= document.querySelector('#deleteTextBox')
 const update_old_code = document.querySelector('#updateOldCode')
 const update_new_code = document.querySelector('#updateNewCode')
 const update_new_nqf = document.querySelector('#updateNewNQF')
+const insert_code = document.querySelector('#insertCode')
+const insert_nqf = document.querySelector('#insertNQF')
+const insert = document.querySelector('#insertButton')
 var course_data;
 //Initial fetch of couse info as json data 
 fetch('/coursesData', { method: 'GET'})
@@ -35,7 +38,19 @@ get.addEventListener('click', _ => {
   }
   return false;
 })
+insert.addEventListener('click', _=>{
+  fetch('/courses', {
+    method:'post',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+        courseCode: insert_code.value,
+        nqf:insert_nqf.value 
+      })
+}).then(data=>{//Reloads page fully to reflect change
+  window.location.href=window.location.href
+})
 
+}) 
 update.addEventListener('click', _ => {
     // Send PUT Request here
     //NOTE: not checking maybe check on clientside first
@@ -48,6 +63,7 @@ update.addEventListener('click', _ => {
             newNQF: update_new_nqf.value 
           })
     })
+    
   })
 
   delete_course.addEventListener('click', _ => {

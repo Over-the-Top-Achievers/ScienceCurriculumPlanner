@@ -18,6 +18,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 
     app.post('/courses', (request, response) =>{//use this method to insert a course into the database
         courseCollection.insertOne(request.body)
+        //TODO: unsafe adding without checking
         .then(result =>{
             response.redirect('/courses')//use this to send us back to a page, in this case everything is displayed on a /courses page for now
         })
@@ -25,6 +26,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
     })
 
     app.get('/courses', (request, response) =>{
+
         courseCollection.find(request.body).toArray()//searches the database for a course
         .then(result =>{
             
