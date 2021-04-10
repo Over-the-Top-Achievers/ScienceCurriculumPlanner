@@ -71,7 +71,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
             {courseCode:request.body.courseCode}//courseCode is a parameter in the query in the javascript file
         )
         .then(result =>{
-            if(result.deletedCount===0){
+            if(result.deletedCount===0){//TODO: doesnt work
                 return response.json('No course to delete')//Can use error codes here instead
             }
             response.json('Deleted COMS5000')

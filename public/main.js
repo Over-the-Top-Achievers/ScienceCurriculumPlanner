@@ -3,6 +3,7 @@ const delete_course = document.querySelector('#delete-button')
 const messageDiv = document.querySelector('#message')
 const get = document.querySelector('#searchBtn')
 const search_box= document.querySelector('#searchTextBox')
+const delete_box= document.querySelector('#deleteTextBox')
 var course_data;
 //Initial fetch of couse info as json data 
 fetch('/coursesData', { method: 'GET'})
@@ -51,10 +52,10 @@ update.addEventListener('click', _ => {
         method:'delete',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            courseCode: 'COMS5000',
+            courseCode: delete_box.value,
           })
     })
-      .then(response => {
+      .then(response => {//TODO: doesnt work
         if(response==='No course to delete'){
           messageDiv.textContent='No course to delete' 
         }
