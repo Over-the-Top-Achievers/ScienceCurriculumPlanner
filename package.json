@@ -4,7 +4,6 @@
   "description": "A site where you plan your sciene curriculum",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
