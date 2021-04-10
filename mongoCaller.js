@@ -100,3 +100,5 @@ var server = app.listen(8080, () => {
 
     console.log(`Listening at http://${host}:${port}`);
 })
+//For testing / supertests
+module.exports = app;
