@@ -6,6 +6,4 @@ node_js:
   script:
   -npm ci
   -npm test
-  before_install:
-  - npm i -g npm@7.6.0
-  
+ 
