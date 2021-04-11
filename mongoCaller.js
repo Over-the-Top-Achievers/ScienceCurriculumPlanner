@@ -4,7 +4,8 @@ const bodyParser= require('body-parser');
 const { response } = require('express');
 const app = express()
 
-var url = "mongodb://localhost:27017/";
+// var url = "mongodb://localhost:27017/";
+var url = "mongodb+srv://Dennisdb:11220011@cluster0.yp25l.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 MongoClient.connect(url, { useUnifiedTopology: true })
   .then(client => {
@@ -17,6 +18,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 
     app.post('/courses', (request, response) =>{//use this method to insert a course into the database
         courseCollection.insertOne(request.body)
+        //TODO: unsafe adding without checking
         .then(result =>{
             response.redirect('/courses')//use this to send us back to a page, in this case everything is displayed on a /courses page for now
         })
@@ -24,30 +26,41 @@ MongoClient.connect(url, { useUnifiedTopology: true })
     })
 
     app.get('/courses', (request, response) =>{
+
         courseCollection.find(request.body).toArray()//searches the database for a course
         .then(result =>{
+            
             response.render('index.ejs',{courses:result})//For display purposes
+           
         })
         .catch(error => console.error(error))
-       
+
     })
+    app.get('/coursesData', (request, response) =>{
+        courseCollection.find({}).toArray()//searches the database for a course
+        .then(result =>{
+            response.send(JSON.stringify(result))//For display purposes
+           
+        })
+        .catch(error => console.error(error))
+
+    })
+
 
     app.put('/courses', (request, response) => {
         courseCollection.findOneAndUpdate(
-            {courseCode:'COMS3000'},
+            {courseCode:request.body.oldCourseCode},
             {
                 $set:{
-                    courseCode:request.body.courseCode,//use this to update the info in the database
-                    nqf:request.body.nqf
+                    courseCode:request.body.newCourseCode,//use this to update the info in the database
+                    nqf:request.body.newNQF
                 }
             },
-            {
-                upsert:true//use this if we want to add a new entry if none of the queried entries exist
-            }
+            //TODO:error message if not in database
+            // {
+            //     upsert:true//use this if we want to add a new entry if none of the queried entries exist
+            // }
         )
-        .then(result =>{
-            console.log(result)
-        })
         .catch(error => console.error(error))
     })
 
@@ -56,7 +69,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
             {courseCode:request.body.courseCode}//courseCode is a parameter in the query in the javascript file
         )
         .then(result =>{
-            if(result.deletedCount===0){
+            if(result.deletedCount===0){//TODO: doesnt work
                 return response.json('No course to delete')//Can use error codes here instead
             }
             response.json('Deleted COMS5000')
@@ -76,42 +89,6 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 // POST -> Put something new onto the server (upload an image)
 // DELETE -> Delete something from the server (Delete a course)
 
-
-
-// function modifyCourse()
-
-// app.get('/courses/:code', (request, response) => {
-//     response.end(courseCode(request))
-// })
-
-// app.use(bodyParser.urlencoded({ extended: true }))
-
-// app.post('/courses', (request, response) =>{
-//     console.log(request.body)
-// })
-
-// app.put('/courses/:code', (request, response) =>{
-//     response.send(courseCode(request))//fix this
-// })
-
-// app.delete('/courses/:code', (request, response) => {
-//     response.send(courseCode(request))
-//   })
-function searchCourse(request) {//look the database and return some courses
-    return JSON.stringify(request.params.code)
-}
-
-function updateCourse(){
-
-}
-
-function deleteCourse(){
-
-}
-
-function editCourse(){
-
-}
 app.get('/', (req, res) => {
 res.sendFile(__dirname + '/views/index.ejs')
 })
@@ -123,3 +100,5 @@ var server = app.listen(8080, () => {
 
     console.log(`Listening at http://${host}:${port}`);
 })
+//For testing / supertests
+module.exports = app;
