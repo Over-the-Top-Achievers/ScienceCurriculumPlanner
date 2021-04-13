@@ -6,7 +6,7 @@
 
 <body class="main-wrapper" fxLayout="row" fxLayoutAlign="center">
 
-    <mat-card class="box" fxFlex="25%" style="height: 400px; vertical-align: middle; margin-top: 175px;">
+    <mat-card class="box" fxFlex="25%" style="height: 400px; vertical-align: middle; margin-top: 140px;">
         <mat-card-header>
             <mat-card-title style="margin-left: 30px;">SIGN IN TO YOUR ACCOUNT</mat-card-title>
         </mat-card-header>
@@ -19,9 +19,14 @@
                 <mat-form-field class="example-full-width" style="margin-top: 16px; margin-left: 50px; font-size: 24px;">
                     <input matInput placeholder="Password">
                 </mat-form-field>
+                <mat-card-actions>
+                    <a routerLink="/admin-page">
+                        <button mat-button type='button' (click)="goToAdmin('/admin-page'); " style="background-color: blue; color: antiquewhite; margin-left: 60px;">SIGN IN</button>
+                    </a>
+                </mat-card-actions>
             </mat-card-content>
-            <button mat-stroked-button color="accent" class="btn-block" style="vertical-align: middle; margin-top: 30px; margin-left: 45px; font-size: 16px;">Sign-in</button>
         </form>
     </mat-card>
 </body>
+<router-outlet></router-outlet>
 <footer></footer>
