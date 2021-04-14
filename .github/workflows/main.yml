@@ -18,6 +18,14 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test --if-present
+
+    - name: Run API Tests
+      id: run-newman
+      uses: anthonyvscode/newman-action@v1
+      with:
+        apiKey: ${{ secrets.postmanApiKey }}
+        collection: 15378248-ece30070-deb3-410d-b1a0-fdec988fdeaf
+        reporters: cli
+
+    - name: Output summary to console
+      run: echo ${{ steps.run-newman.outputs.summary }}
