@@ -41,17 +41,22 @@ get.addEventListener('click', _ => {
   return false;
 })
 insert.addEventListener('click', _=>{
+
+  // preventing from entering empty value.
   if(insert_code.value == '' || insert_nqf.value == ''){
     console.log('this is empty, please enter value.');
     return
   }
+
+  // if information is filled, pass to database.
   else{
     fetch('/courses', {
       method:'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-          courseCode: insert_code.value,
-          nqf:insert_nqf.value 
+        // upper case for change the course code to uppercase in the database
+          courseCode: insert_code.value.toString().toUpperCase(),
+          nqf:insert_nqf.value.toString().toUpperCase()
         })
   }).then(data=>{//Reloads page fully to reflect change
     window.location.href=window.location.href
