@@ -11,6 +11,8 @@ const insert_code = document.querySelector('#insertCode')
 const insert_nqf = document.querySelector('#insertNQF')
 const insert = document.querySelector('#insertButton')
 var course_data;
+
+
 //Initial fetch of couse info as json data 
 fetch('/coursesData', { method: 'GET'})
   .then((res) => {
@@ -20,6 +22,7 @@ fetch('/coursesData', { method: 'GET'})
    // Do something with the returned data.
   course_data=json;
   //Example access
+  console.log('there are '+course_data.length+' courses');
   console.log(json[0].courseCode);
 });
 get.addEventListener('click', _ => {
@@ -39,16 +42,34 @@ get.addEventListener('click', _ => {
   return false;
 })
 insert.addEventListener('click', _=>{
-  fetch('/courses', {
-    method:'post',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-        courseCode: insert_code.value,
-        nqf:insert_nqf.value 
-      })
-}).then(data=>{//Reloads page fully to reflect change
-  window.location.href=window.location.href
-})
+  //preventing from entering the same course code twice 
+  for(var i = 0;i < course_data.length;i++){
+    if(course_data[i].courseCode == insert_code.value.toString().toUpperCase()){
+      console.log('cannot enter the same course twice!');
+      return;
+    }
+  }
+
+  // preventing from entering empty value.
+  if(insert_code.value == '' || insert_nqf.value == ''){
+    console.log('this is empty, please enter value.');
+    return
+  }
+
+  // if information is filled, pass to database.
+  else{
+    fetch('/courses', {
+      method:'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        // upper case for change the course code to uppercase in the database
+          courseCode: insert_code.value.toString().toUpperCase(),
+          nqf:insert_nqf.value.toString().toUpperCase()
+        })
+  }).then(data=>{//Reloads page fully to reflect change
+    window.location.href=window.location.href
+  })
+  }
 
 }) 
 update.addEventListener('click', _ => {

@@ -36,3 +36,4 @@ We will be using a three-tier architecture pattern:
  ### Dependancies 
   The project currently assumes you have a recent version of nodejs with npm installed.
   The rest of the dependancies are already in the repo.
+
