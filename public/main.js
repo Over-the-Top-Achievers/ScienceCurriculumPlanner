@@ -11,6 +11,8 @@ const insert_code = document.querySelector('#insertCode')
 const insert_nqf = document.querySelector('#insertNQF')
 const insert = document.querySelector('#insertButton')
 var course_data;
+
+
 //Initial fetch of couse info as json data 
 fetch('/coursesData', { method: 'GET'})
   .then((res) => {
@@ -39,16 +41,22 @@ get.addEventListener('click', _ => {
   return false;
 })
 insert.addEventListener('click', _=>{
-  fetch('/courses', {
-    method:'post',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-        courseCode: insert_code.value,
-        nqf:insert_nqf.value 
-      })
-}).then(data=>{//Reloads page fully to reflect change
-  window.location.href=window.location.href
-})
+  if(insert_code.value == '' || insert_nqf.value == ''){
+    console.log('this is empty, please enter value.');
+    return
+  }
+  else{
+    fetch('/courses', {
+      method:'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+          courseCode: insert_code.value,
+          nqf:insert_nqf.value 
+        })
+  }).then(data=>{//Reloads page fully to reflect change
+    window.location.href=window.location.href
+  })
+  }
 
 }) 
 update.addEventListener('click', _ => {
