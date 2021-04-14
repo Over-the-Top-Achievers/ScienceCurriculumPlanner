@@ -11,6 +11,10 @@ MongoClient.connect(url, { useUnifiedTopology: true })
   .then(client => {
     const db = client.db('curriculum_planner')
     const courseCollection = db.collection('course')
+
+    const pre_reqcollecton = db.collection('pre_req');
+    const co_reqcollection = db.collection('co_req');
+
     app.set('view engine', 'ejs')//we use this to be able to write javascript that can change the webpage since html is static and cannot be changed
     app.use(bodyParser.urlencoded({ extended: true }))
     app.use(bodyParser.json())
@@ -46,6 +50,27 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 
     })
 
+    // getting pre requisite from the database 
+    app.get('/pre_req', (request, response) =>{
+        pre_reqcollecton.find({}).toArray()//searches the database for a pre req
+        .then(result =>{
+            response.send(JSON.stringify(result))//For display purposes
+           
+        })
+        .catch(error => console.error(error))
+
+    })
+
+    // getting co rep from the database
+    app.get('/co_req', (request, response) =>{
+        co_reqcollection.find({}).toArray()//searches the database for a co req
+        .then(result =>{
+            response.send(JSON.stringify(result))//For display purposes
+           
+        })
+        .catch(error => console.error(error))
+
+    })
 
     app.put('/courses', (request, response) => {
         courseCollection.findOneAndUpdate(
