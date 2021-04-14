@@ -22,6 +22,7 @@ fetch('/coursesData', { method: 'GET'})
    // Do something with the returned data.
   course_data=json;
   //Example access
+  console.log('there are '+course_data.length+' courses');
   console.log(json[0].courseCode);
 });
 get.addEventListener('click', _ => {
@@ -41,6 +42,13 @@ get.addEventListener('click', _ => {
   return false;
 })
 insert.addEventListener('click', _=>{
+  //preventing from entering the same course code twice 
+  for(var i = 0;i < course_data.length;i++){
+    if(course_data[i].courseCode == insert_code.value.toString().toUpperCase()){
+      console.log('cannot enter the same course twice!');
+      return;
+    }
+  }
 
   // preventing from entering empty value.
   if(insert_code.value == '' || insert_nqf.value == ''){
