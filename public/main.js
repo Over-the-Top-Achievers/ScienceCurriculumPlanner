@@ -22,9 +22,57 @@ fetch('/coursesData', { method: 'GET'})
    // Do something with the returned data.
   course_data=json;
   //Example access
+
   console.log('there are '+course_data.length+' courses');
-  console.log(json[0].courseCode);
+  //console.log(json[0].courseCode);
+
 });
+
+
+var pre_data;
+//Initial fetch of pre req info as json data 
+fetch('/pre_req', { method: 'GET'})
+  .then((res) => {
+     return res.json()
+})
+  .then((json) => {
+
+  pre_data=json;
+
+  for(var i = 0; i< course_data.length; i++){
+    for(var j = 0; j<pre_data.length;j++){
+      if(course_data[i]._id == pre_data[j]._id ){
+        // these for loops are for finding which course have what pre req, the console can be commented out
+        // do something
+        //console.log('the pre req for '+course_data[i].courseCode+' is '+pre_data[j].pre_req);
+      }
+    }
+  }
+});
+
+
+var co_data;
+//Initial fetch of co req info as json data 
+fetch('/co_req', { method: 'GET'})
+  .then((res) => {
+     return res.json()
+})
+  .then((json) => {
+
+  co_data=json;
+
+  for(var i = 0; i< course_data.length; i++){
+    for(var j = 0; j<co_data.length;j++){
+      if(course_data[i]._id == co_data[j]._id ){
+        // these for loops are for finding which course have what co req, the console can be commented out
+        // do something
+        console.log('the co req for '+course_data[i].courseCode+' is '+co_data[j].co_req);
+      }
+    }
+  }
+});
+
+
 get.addEventListener('click', _ => {
  //Get code
   var search_code= search_box.value;
