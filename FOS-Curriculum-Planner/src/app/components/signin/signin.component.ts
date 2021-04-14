@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -7,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class SigninComponent implements OnInit {
-
-  constructor() { }
+  title = 'FOS-Curriculum-Planner';
 
   ngOnInit(): void {
+  }
+
+  constructor(
+    private router:Router,
+    private activatedRoute:ActivatedRoute
+  ){}
+
+  goToAdmin(pageName:string):void{
+    console.log("Sign in button clicked");  //to see if the button responds correctly
+    this.router.navigate(['`${pageName}`']);
   }
   
 }
