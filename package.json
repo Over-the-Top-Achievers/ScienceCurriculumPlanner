@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "A site where you plan your sciene curriculum",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Over-the-Top-Achievers/ScienceCurriculumPlanner.git"
@@ -17,6 +16,8 @@
   "homepage": "https://github.com/Over-the-Top-Achievers/ScienceCurriculumPlanner#readme",
   "dependencies": {
     "chai": "^4.3.4",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
     "mocha": "^8.3.2",
     "mongodb": "^3.6.6",
