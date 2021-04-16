@@ -56,12 +56,15 @@ MongoClient.connect(url, { useUnifiedTopology: true })
                     courseCode:request.body.newCourseCode,//use this to update the info in the database
                     nqf:request.body.newNQF
                 }
-            },
+            }
             //TODO:error message if not in database
             // {
             //     upsert:true//use this if we want to add a new entry if none of the queried entries exist
             // }
         )
+        .then(result=>{
+            response.send(result)
+        })
         .catch(error => console.error(error))
     })
 
