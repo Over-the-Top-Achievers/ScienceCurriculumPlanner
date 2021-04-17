@@ -1,8 +1,10 @@
-const express = require('express')
+const express = require('express');
+const cors = require('cors');
 const { MongoClient } = require('mongodb'); 
 const bodyParser= require('body-parser');
 const { response } = require('express');
-const app = express()
+const app = express();
+app.use(cors());
 
 // var url = "mongodb://localhost:27017/";
 var url = "mongodb+srv://Dennisdb:11220011@cluster0.yp25l.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
