@@ -21,7 +21,10 @@ jobs:
     - name: Install jest-coverage-badges
       run: npm install --save jest-coverage-badges
     - name: Run testing
-      run: npm run test
+      run: | 
+        npm run test
+        npm config set user 0
+        npm config set unsafe-perm true
     - name: Create badges
       run: jest-coverage-badge
     - name: Push badges
