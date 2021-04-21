@@ -99,11 +99,6 @@ res.sendFile(__dirname + '/views/index.ejs')
 })
 
 
-var server = app.listen(8080, () => {
-    var host = server.address().address;
-    var port = server.address().port;
 
-    console.log(`Listening at http://${host}:${port}`);
-})
 //For testing / supertests
 module.exports = app;

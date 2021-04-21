@@ -18,7 +18,7 @@ beforeEach((done) => {
     it("returns status code 200 for /courses", async () => {
       const res =await supertest(app)
         .get("/courses")
-      expect(res.statusCode).toEqual(200)
+      expect(res.statusCode).toEqual(200)//NOTE always first on first run, will pass on second run
     })
     //check for json body
   })
