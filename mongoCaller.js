@@ -13,7 +13,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
   .then(client => {
     const db = client.db('curriculum_planner')
     const courseCollection = db.collection('course')
-
+    //TODO remove ejs
     app.set('view engine', 'ejs')//we use this to be able to write javascript that can change the webpage since html is static and cannot be changed
     app.use(bodyParser.urlencoded({ extended: true }))
     app.use(bodyParser.json())
@@ -63,6 +63,9 @@ MongoClient.connect(url, { useUnifiedTopology: true })
             //     upsert:true//use this if we want to add a new entry if none of the queried entries exist
             // }
         )
+        .then(result=>{
+            response.send(result)
+        })
         .catch(error => console.error(error))
     })
 
