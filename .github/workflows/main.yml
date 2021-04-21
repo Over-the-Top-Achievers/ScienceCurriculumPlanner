@@ -19,10 +19,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
       run: npm test:badges
-    - uses: actions/checkout@v2
     - name: Push badges
-        run: |
-          git config --global user.name 'Sushil Ragoonath'
-          git config --global user.email 'SushilRagoonath@users.noreply.github.com'
-          git checkout branches
-          git push --force
+      run: |
+        git config --global user.name 'Sushil Ragoonath'
+        git config --global user.email 'SushilRagoonath@users.noreply.github.com'
+        git checkout branches
+        git push --force
