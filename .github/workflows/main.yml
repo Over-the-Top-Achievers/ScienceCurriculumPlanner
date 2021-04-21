@@ -20,7 +20,7 @@ jobs:
     - name: Delete node modules
       run: rm -r node_modules
     - name: Install jest-coverage-badges
-      run: npm install --save jest-coverage-badges
+      run: npm install --global jest-coverage-badges
     - name: Run testing
       continue-on-error: true
       run: | 
@@ -29,10 +29,12 @@ jobs:
         npm config set user 0
         npm config set unsafe-perm true
     - name: Create badges
-      run: jest-coverage-badge
+      run: jest-coverage-badges
     - name: Push badges
       run: |
         git config --global user.name 'Sushil Ragoonath'
         git config --global user.email 'SushilRagoonath@users.noreply.github.com'
         git checkout branches
+        git add -A
+        git commit -a -m "badge update"
         git push --force
