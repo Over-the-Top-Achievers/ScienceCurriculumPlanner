@@ -18,14 +18,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-
-    - name: Run API Tests
-      id: run-newman
-      uses: anthonyvscode/newman-action@v1
-      with:
-        apiKey: ${{ secrets.postmanApiKey }}
-        collection: 15378248-ece30070-deb3-410d-b1a0-fdec988fdeaf
-        reporters: cli
-
-    - name: Output summary to console
-      run: echo ${{ steps.run-newman.outputs.summary }}
+      run: npm test:badges
+    - uses: actions/checkout@v2
+    - name: Push badges
+        run: |
+          git config --global user.name 'Sushil Ragoonath'
+          git config --global user.email 'SushilRagoonath@users.noreply.github.com'
+          git checkout branches
+          git push --force
