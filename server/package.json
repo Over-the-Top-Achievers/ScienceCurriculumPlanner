@@ -4,7 +4,8 @@
   "description": "A site where you plan your sciene curriculum",
   "main": "index.js",
   "scripts": {
-    "test": "jest --testTimeout=5000"
+   "test": "jest  --coverage --detectOpenHandles --runInBand --testTimeout=60000 --bail",
+   "test:badges": "npm run test  && jest-coverage-badges"
   },
   "repository": {
     "type": "git",
@@ -28,5 +29,11 @@
     "ejs": "^3.1.6",
     "jest": "^26.6.3",
     "mongoose": "^5.12.3"
+  },
+    "jest": {
+    "verbose": true,
+    "coverageDirectory": "coverage/",
+    "coverageReporters": ["html","text","json-summary"]
+
   }
 }
