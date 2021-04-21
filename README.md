@@ -1,7 +1,8 @@
 
 [![Node.js testing](https://github.com/Over-the-Top-Achievers/ScienceCurriculumPlanner/actions/workflows/main.yml/badge.svg)](https://github.com/Over-the-Top-Achievers/ScienceCurriculumPlanner/actions/workflows/main.yml)
 
-[![codecov](https://codecov.io/gh/Over-the-Top-Achievers/ScienceCurriculumPlanner/branch/master/graph/badge.svg?token=SK7EPYFQNQ)](https://codecov.io/gh/Over-the-Top-Achievers/ScienceCurriculumPlanner)
+[![Code coverage](https://raw.githubusercontent.com/Over-the-Top-Achievers/ScienceCurriculumPlanner/badges/coverage/badge-functions.svg?token=ALSWVBZATJMCLAS5MUGCOVTAQBIIA)
+
 ## ScienceCurriculumPlanner
 This Over-the-Top Achievers github page. Greetings!
 We are a group of developers that are designing and developing a website for, product owner, Steve James. The website is a curriculum planner for the faculty of science, which will allow undergraduate students to plan their courses and modules for any of their years of study while verifying course availability and credit values. 
