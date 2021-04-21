@@ -18,8 +18,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Install jest-coverage-badges
+      run: npm install --save jest-coverage-badges
     - name: Run testing
-      run: npm test:badges
+      run: npm run test
+    - name: Create badges
+      run: jest-coverage-badge
     - name: Push badges
       run: |
         git config --global user.name 'Sushil Ragoonath'
