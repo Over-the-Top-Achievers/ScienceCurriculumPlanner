@@ -19,7 +19,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Delete node modules
-      run: rm -r node
+      run: rm -r node_modules
     - name: Install jest-coverage-badges
       run: npm install --save jest-coverage-badges
     - name: Run testing
