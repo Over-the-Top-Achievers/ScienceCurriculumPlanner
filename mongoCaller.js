@@ -64,11 +64,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
                     Co_requisite:request.body.newCoReq,
                     Pre_requisite:request.body.newPreReq
                 }
-            },
-            //TODO:error message if not in database
-            // {
-            //     upsert:true//use this if we want to add a new entry if none of the queried entries exist
-            // }
+            }
         )
         .then(result=>{
             response.send(result)
