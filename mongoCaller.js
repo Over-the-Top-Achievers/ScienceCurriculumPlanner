@@ -54,14 +54,17 @@ MongoClient.connect(url, { useUnifiedTopology: true })
             {courseCode:request.body.oldCourseCode},
             {
                 $set:{
-                    courseCode:request.body.newCourseCode,//use this to update the info in the database
-                    nqf:request.body.newNQF
+                    Course_Code:request.body.newCourseCode,//use this to update the info in the database
+                    Course_Name:request.body.newCourseName,
+                    Credits:request.body.newCred,
+                    NQF:request.body.newNQF,
+                    Slot:request.body.newSlot,
+                    Semester:request.body.newSem,
+                    Year:request.body.newYear,
+                    Co_requisite:request.body.newCoReq,
+                    Pre_requisite:request.body.newPreReq
                 }
-            },
-            //TODO:error message if not in database
-            // {
-            //     upsert:true//use this if we want to add a new entry if none of the queried entries exist
-            // }
+            }
         )
         .then(result=>{
             response.send(result)
