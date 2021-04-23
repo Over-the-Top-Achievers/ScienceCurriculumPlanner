@@ -13,6 +13,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
   .then(client => {
     const db = client.db('curriculum_planner')
     const courseCollection = db.collection('course')
+
     //TODO remove ejs
     app.set('view engine', 'ejs')//we use this to be able to write javascript that can change the webpage since html is static and cannot be changed
     app.use(bodyParser.urlencoded({ extended: true }))
@@ -27,6 +28,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
         })
         .catch(error => console.error(error))
     })
+
 
     app.get('/courses', (request, response) =>{
 
@@ -72,15 +74,18 @@ MongoClient.connect(url, { useUnifiedTopology: true })
         .catch(error => console.error(error))
     })
 
+
     app.delete('/courses', (request, response) => {
+        
         courseCollection.deleteOne(
-            {courseCode:request.body.courseCode}//courseCode is a parameter in the query in the javascript file
+            {Course_Code:request.body.courseCode}//courseCode is a parameter in the query in the javascript file
         )
         .then(result =>{
+            console.log(request.body)
             if(result.deletedCount===0){//TODO: doesnt work
                 return response.json('No course to delete')//Can use error codes here instead
             }
-            response.json('Deleted COMS5000')
+            response.json('Deleted '+request.body.courseCode);
         })
         .catch(error => console.error(error))
     })
