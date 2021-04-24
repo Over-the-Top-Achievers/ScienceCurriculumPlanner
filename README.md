@@ -21,15 +21,15 @@ We will be using a three-tier architecture pattern:
   To begin using the planner run 
   
   ```bash 
-  node mongoCaller.js
+  node startServer.js
   ```
   or on windows
   ```bash 
-  node_modules\.bin\nodemon mongoCaller.js
+  node_modules\.bin\nodemon startServer.js
   ```
   on linux 
   ```bash 
-  ./node_modules/.bin/nodemon mongoCaller.js
+  ./node_modules/.bin/nodemon startServer.js
   ```
   
   *note the project is still under heavy construction and this will likely change in the future*
