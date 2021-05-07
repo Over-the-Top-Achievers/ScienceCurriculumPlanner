@@ -3,6 +3,7 @@ const cors = require('cors');
 const { MongoClient } = require('mongodb'); 
 const bodyParser= require('body-parser');
 const { response } = require('express');
+const { Parser } = require('json2csv');
 const app = express();
 app.use(cors());
 
@@ -50,7 +51,28 @@ MongoClient.connect(url, { useUnifiedTopology: true })
         .catch(error => console.error(error))
 
     })
+    app.get('/coursesCSV', (request, response) =>{
+        courseCollection.find({}).toArray()//searches the database for a course
+        .then(result =>{
+            var fields = [
+//             '_id',
+            'Course_Code',
+            'Course_Name',
+            'Credits',
+            'NQF',
+            'Slot',
+            'Semester',
+            'Year',
+            'Co_requisite',
+            'Pre_requisite'];
+            const p = new Parser( {fields } )
+            var data = p.parse(result)
+//             response.send(data)//For display purposes
+            response.send(JSON.stringify(data))//For display purposes
+        })
+        .catch(error => console.error(error))
 
+    })
     app.put('/courses', (request, response) => {
         courseCollection.findOneAndUpdate(
             {courseCode:request.body.oldCourseCode},
