@@ -74,8 +74,9 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 
     })
     app.put('/courses', (request, response) => {
+        console.log(request.body);
         courseCollection.findOneAndUpdate(
-            {courseCode:request.body.oldCourseCode},
+            {Course_Code:request.body.oldCourseCode},
             {
                 $set:{
                     Course_Code:request.body.newCourseCode,//use this to update the info in the database
