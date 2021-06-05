@@ -36,3 +36,10 @@ jobs:
         git add -A
         git commit -a -m "badge update"
         git push origin HEAD:badges --force
+    - name: upload code-cov
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+        verbose: true # optional (default = false)
+        file: ./coverage/coverage-summary.json
+        directory: ./coverage/
