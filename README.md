@@ -1,7 +1,7 @@
 
 [![Node.js testing](https://github.com/Over-the-Top-Achievers/ScienceCurriculumPlanner/actions/workflows/main.yml/badge.svg)](https://github.com/Over-the-Top-Achievers/ScienceCurriculumPlanner/actions/workflows/main.yml)
 
-![Code coverage](https://raw.githubusercontent.com/Over-the-Top-Achievers/ScienceCurriculumPlanner/badges/coverage/badge-statements.svg?token=ALSWVBYE23B52DNDGWERVTLAVOBNK)
+[![codecov](https://codecov.io/gh/Over-the-Top-Achievers/ScienceCurriculumPlanner/branch/master/graph/badge.svg?token=SK7EPYFQNQ)](https://codecov.io/gh/Over-the-Top-Achievers/ScienceCurriculumPlanner)
 
 ## ScienceCurriculumPlanner
 This Over-the-Top Achievers github page. Greetings!
