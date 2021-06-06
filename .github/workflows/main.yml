@@ -20,6 +20,7 @@ jobs:
     - name: Install jest-coverage-badges
       run: npm install --global jest-coverage-badges
     - name: Run testing
+      continue-on-error: true
       run: | 
         npm install
         npm run test
@@ -36,3 +37,9 @@ jobs:
         git add -A
         git commit -a -m "badge update"
         git push origin HEAD:badges --force
+    - name: upload code-cov
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+        verbose: true # optional (default = false)
+        directory: ./coverage/
