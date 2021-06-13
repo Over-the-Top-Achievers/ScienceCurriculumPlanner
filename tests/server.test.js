@@ -1,8 +1,8 @@
 const app = require("../mongoCaller.js");
 const mongoose = require("mongoose");
 const supertest = require("supertest");
+const { expect } = require("chai");
 
-//IDK
 beforeEach((done) => {
     mongoose.connect("mongodb+srv://Dennisdb:11220011@cluster0.yp25l.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
       { useNewUrlParser: true, useUnifiedTopology: true },
@@ -14,24 +14,34 @@ beforeEach((done) => {
   });
 
 
-  describe('Get Endpoints',()=>{
-    it("returns status code 200 for /courses", async () => {
+  describe('Get Data Endpoint',()=>{
+    it("returns status code 200 for /coursesData", async () => {
       const res =await supertest(app)
-        .get("/courses")
-      expect(res.statusCode).toEqual(200)//NOTE always first on first run, will pass on second run
+        .get("/coursesData")
+      expect(res.statusCode).toEqual(200)
     })
     //check for json body
   })
+  describe('Get CSV Endpoint',()=>{
+    it("returns status code 200 for /coursesCSV", async () => {
+      const res =await supertest(app)
+        .get("/coursesCSV")
+      expect(res.statusCode).toEqual(200)
+    })
+    //check for json body
+  })
+
 
   describe('Post Endpoints',()=>{
     it("should create a new post", async () => {
       const res =await supertest(app)
         .post("/courses")
         .send({
-          courseCode:'test'
+          Course_Code:'test'
         })
-      expect(res.statusCode).toEqual(201)//for successful create
+      expect(res.statusCode).toEqual(200)//for successful create
     })
+
   })
 
   describe('Put Endpoints',()=>{
