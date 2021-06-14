@@ -75,7 +75,8 @@ MongoClient.connect(url, { useUnifiedTopology: true })
                     Semester:request.body.newSem,
                     Year:request.body.newYear,
                     Co_requisite:request.body.newCoReq,
-                    Pre_requisite:request.body.newPreReq
+                    Pre_requisite:request.body.newPreReq,
+                    Shareable:request.body.newShareable
                 }
             }
         )
