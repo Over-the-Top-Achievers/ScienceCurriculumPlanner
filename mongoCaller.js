@@ -14,7 +14,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
   .then(client => {
     const db = client.db('curriculum_planner')
     const courseCollection = db.collection('course')
-
+    const highschoolApsCollection = db.collection('high_school_subjects_and_aps')
 
     app.use(bodyParser.urlencoded({ extended: true }))
     app.use(bodyParser.json())
@@ -29,7 +29,14 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 
     })
 
-
+    app.get('/subjectsData', (request, response) =>{
+        highschoolApsCollection.find({}).toArray()//searches the database for a course
+        .then(result =>{
+            response.send(JSON.stringify(result))//For display purposes
+           
+        })
+        .catch(error => console.error(error))
+    })
     app.get('/coursesData', (request, response) =>{
         courseCollection.find({}).toArray()//searches the database for a course
         .then(result =>{
@@ -37,7 +44,6 @@ MongoClient.connect(url, { useUnifiedTopology: true })
            
         })
         .catch(error => console.error(error))
-
     })
     app.get('/coursesCSV', (request, response) =>{
         courseCollection.find({}).toArray()//searches the database for a course
@@ -75,7 +81,8 @@ MongoClient.connect(url, { useUnifiedTopology: true })
                     Semester:request.body.newSem,
                     Year:request.body.newYear,
                     Co_requisite:request.body.newCoReq,
-                    Pre_requisite:request.body.newPreReq
+                    Pre_requisite:request.body.newPreReq,
+                    Shareable:request.body.newShareable
                 }
             }
         )
@@ -110,7 +117,6 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 // PUT -> Change something on a server (update the course code) 
 // POST -> Put something new onto the server (upload an image)
 // DELETE -> Delete something from the server (Delete a course)
-
 
 
 
