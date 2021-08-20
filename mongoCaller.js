@@ -14,6 +14,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
   .then(client => {
     const db = client.db('curriculum_planner')
     const courseCollection = db.collection('course')
+    const apsCollection =db.collection('high_school_subjects_and_aps')
     const highschoolApsCollection = db.collection('high_school_subjects_and_aps')
 
     app.use(bodyParser.urlencoded({ extended: true }))
@@ -83,6 +84,30 @@ MongoClient.connect(url, { useUnifiedTopology: true })
                     Co_requisite:request.body.newCoReq,
                     Pre_requisite:request.body.newPreReq,
                     Shareable:request.body.newShareable
+                }
+            }
+        )
+        .then(result=>{
+            response.send(result)
+        })
+
+    })
+
+    app.put('/updateAPS', (request, response) => {
+        // console.log(request.body);
+        apsCollection.findOneAndUpdate(
+            {Subject:request.body.oldSubject},
+            {
+                $set:{
+                    Subject:request.body.oldSubject,//use this to update the info in the database
+                    Level_100_90:request.body.newLevel_100_90,
+                    Level_89_80:request.body.newLevel_89_80,
+                    Level_79_70:request.body.newLevel_79_70,
+                    Level_69_60:request.body.newLevel_69_60,
+                    Level_59_50:request.body.newLevel_59_50,
+                    Level_49_40:request.body.newLevel_49_40,
+                    Level_39_30:request.body.newLevel_39_30,
+                    Level_29_0:request.body.newLevel_29_0
                 }
             }
         )
