@@ -14,7 +14,6 @@ MongoClient.connect(url, { useUnifiedTopology: true })
   .then(client => {
     const db = client.db('curriculum_planner')
     const courseCollection = db.collection('course')
-    const apsCollection =db.collection('high_school_subjects_and_aps')
     const highschoolApsCollection = db.collection('high_school_subjects_and_aps')
 
     app.use(bodyParser.urlencoded({ extended: true }))
@@ -95,7 +94,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 
     app.put('/updateAPS', (request, response) => {
         // console.log(request.body);
-        apsCollection.findOneAndUpdate(
+        highschoolApsCollection.findOneAndUpdate(
             {Subject:request.body.oldSubject},
             {
                 $set:{
