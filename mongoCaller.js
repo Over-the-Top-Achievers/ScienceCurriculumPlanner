@@ -92,6 +92,30 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 
     })
 
+    app.put('/updateAPS', (request, response) => {
+        // console.log(request.body);
+        highschoolApsCollection.findOneAndUpdate(
+            {Subject:request.body.oldSubject},
+            {
+                $set:{
+                    Subject:request.body.oldSubject,//use this to update the info in the database
+                    Level_100_90:request.body.newLevel_100_90,
+                    Level_89_80:request.body.newLevel_89_80,
+                    Level_79_70:request.body.newLevel_79_70,
+                    Level_69_60:request.body.newLevel_69_60,
+                    Level_59_50:request.body.newLevel_59_50,
+                    Level_49_40:request.body.newLevel_49_40,
+                    Level_39_30:request.body.newLevel_39_30,
+                    Level_29_0:request.body.newLevel_29_0
+                }
+            }
+        )
+        .then(result=>{
+            response.send(result)
+        })
+
+    })
+
 
     app.delete('/courses', (request, response) => {
         
