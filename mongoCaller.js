@@ -125,6 +125,25 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 
     })
 
+    app.put('/updateReq', (request, response) => {
+        // console.log(request.body);
+        degreeRequirement.findOneAndUpdate(
+            {Degree_Name:request.body.oldDegreeName},
+            {
+                $set:{
+                    Degree_Name:request.body.newDegree_Name,
+                    Firm_Offer:request.body.newFirm_Offer,
+                    Waitlist:request.body.newWaitlist,
+                    Reject:request.body.newReject,
+
+            }
+        )
+        .then(result=>{
+            response.send(result)
+        })
+
+    })
+
 
     app.delete('/courses', (request, response) => {
         
