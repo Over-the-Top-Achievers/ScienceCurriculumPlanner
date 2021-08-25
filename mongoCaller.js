@@ -136,6 +136,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
                     Waitlist:request.body.newWaitlist,
                     Reject:request.body.newReject,
 
+                }
             }
         )
         .then(result=>{
