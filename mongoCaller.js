@@ -15,6 +15,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
     const db = client.db('curriculum_planner')
     const courseCollection = db.collection('course')
     const highschoolApsCollection = db.collection('high_school_subjects_and_aps')
+    const degreeRequirement = db.collection('degree_requirement')
 
     app.use(bodyParser.urlencoded({ extended: true }))
     app.use(bodyParser.json())
@@ -27,6 +28,14 @@ MongoClient.connect(url, { useUnifiedTopology: true })
             response.send(result)
         })
 
+    })
+    app.get('/degreeReq', (request, response) =>{
+        degreeRequirement.find({}).toArray()//searches the database for a course
+        .then(result =>{
+            response.send(JSON.stringify(result))//For display purposes
+           
+        })
+        .catch(error => console.error(error))
     })
 
     app.get('/subjectsData', (request, response) =>{
