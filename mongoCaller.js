@@ -29,6 +29,24 @@ MongoClient.connect(url, { useUnifiedTopology: true })
         })
 
     })
+    app.post('/updateReq', (request, response) =>{//use this method to insert a course into the database
+        
+        degreeRequirement.insertOne(request.body)
+        //TODO: unsafe adding without checking
+        .then(result=>{
+            response.send(result)
+        })
+
+    })
+    app.post('/updateAPS', (request, response) =>{//use this method to insert a course into the database
+        
+        highschoolApsCollection.insertOne(request.body)
+        //TODO: unsafe adding without checking
+        .then(result=>{
+            response.send(result)
+        })
+
+    })
     app.get('/degreeReq', (request, response) =>{
         degreeRequirement.find({}).toArray()//searches the database for a course
         .then(result =>{
@@ -126,7 +144,6 @@ MongoClient.connect(url, { useUnifiedTopology: true })
     })
 
     app.put('/updateReq', (request, response) => {
-        console.log(request.body);
         degreeRequirement.findOneAndUpdate(
             {Degree_Name:request.body.newDegree_Name},
             {
@@ -151,8 +168,29 @@ MongoClient.connect(url, { useUnifiedTopology: true })
             {Course_Code:request.body.courseCode}//courseCode is a parameter in the query in the javascript file
         )
         .then(result =>{
-            console.log(request.body)
             // response.json('Deleted '+request.body.courseCode);
+            response.send(result)
+        })
+
+    })
+
+    app.delete('/updateReq', (request, response) => {
+        
+        degreeRequirement.deleteOne(
+            {Degree_Name:request.body.newDegree_Name}
+        )
+        .then(result =>{
+            response.send(result)
+        })
+
+    })
+
+    app.delete('/updateAPS', (request, response) => {
+        
+        highschoolApsCollection.deleteOne(
+            {Subject:request.body.oldSubject}
+        )
+        .then(result =>{
             response.send(result)
         })
 
