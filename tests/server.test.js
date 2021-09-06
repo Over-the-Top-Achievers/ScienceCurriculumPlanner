@@ -18,7 +18,7 @@ beforeEach((done) => {
     it("returns status code 200 for /coursesData", async () => {
       const res =await supertest(app)
         .get("/coursesData")
-      expect(res.statusCode).to.equal(200)
+      expect(res.statusCode).toEqual(200)
     })
     //check for json body
   })
@@ -26,7 +26,7 @@ beforeEach((done) => {
     it("returns status code 200 for /coursesCSV", async () => {
       const res =await supertest(app)
         .get("/coursesCSV")
-      expect(res.statusCode).to.equal(200)
+      expect(res.statusCode).toEqual(200)
     })
     //check for json body
   })
@@ -34,7 +34,7 @@ beforeEach((done) => {
     it("returns status code 200 for /degreeReq", async () => {
       const res =await supertest(app)
         .get("/degreeReq")
-      expect(res.statusCode).to.equal(200)
+      expect(res.statusCode).toEqual(200)
     })
     //check for json body
   })
@@ -42,7 +42,7 @@ beforeEach((done) => {
     it("returns status code 200 for /subjectsData", async () => {
       const res =await supertest(app)
         .get("/subjectsData")
-      expect(res.statusCode).to.equal(200)
+      expect(res.statusCode).toEqual(200)
     })
     //check for json body
   })
@@ -55,7 +55,7 @@ beforeEach((done) => {
         .send({
           Course_Code:'test'
         })
-      expect(res.statusCode).to.equal(200)//for successful create
+      expect(res.statusCode).toEqual(200)//for successful create
     });
 
     it("should create a new post on updateAPS endpoint", async () => {
@@ -64,7 +64,7 @@ beforeEach((done) => {
         .send({
           Subject:'testSubject'
         })
-      expect(res.statusCode).to.equal(200)//for successful create
+      expect(res.statusCode).toEqual(200)//for successful create
     });
 
     it("should create a new post on updateReq endpoint", async () => {
@@ -73,7 +73,7 @@ beforeEach((done) => {
         .send({
           Degree_Name:'testDegree_Name'
         })
-      expect(res.statusCode).to.equal(200)//for successful create
+      expect(res.statusCode).toEqual(200)//for successful create
     });
     
 
@@ -90,7 +90,7 @@ beforeEach((done) => {
           newNQF: 50
         })
         
-      expect(res.statusCode).to.equal(200)
+      expect(res.statusCode).toEqual(200)
       //check that we actually editted it
        
     });
@@ -103,7 +103,7 @@ beforeEach((done) => {
           newLevel_100_90: 'test',
         })
         
-      expect(res.statusCode).to.equal(200)
+      expect(res.statusCode).toEqual(200)
       //check that we actually editted it
        
     });
@@ -116,7 +116,7 @@ beforeEach((done) => {
           newFirm_Offer: 'testFirm_Offer'
         })
         
-      expect(res.statusCode).to.equal(200)
+      expect(res.statusCode).toEqual(200)
       //check that we actually editted it
        
     });
@@ -131,7 +131,7 @@ beforeEach((done) => {
         .send({
           courseCode:'test'
         })
-      expect(res.statusCode).to.equal(200)
+      expect(res.statusCode).toEqual(200)
     });
 
     it("should delete on updateReq endpoint", async () => {
@@ -140,7 +140,7 @@ beforeEach((done) => {
         .send({
           Degree_Name:'testDegree_Name'
         })
-      expect(res.statusCode).to.equal(200)
+      expect(res.statusCode).toEqual(200)
     });
 
     it("should delete on updateAPS endpoint", async () => {
@@ -149,6 +149,6 @@ beforeEach((done) => {
         .send({
           Subject:'testSubject'
         })
-      expect(res.statusCode).to.equal(200)
+      expect(res.statusCode).toEqual(200)
     });
   })
