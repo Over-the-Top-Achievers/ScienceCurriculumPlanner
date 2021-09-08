@@ -177,7 +177,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
     app.delete('/updateReq', (request, response) => {
         
         degreeRequirement.deleteOne(
-            {Degree_Name:request.body.newDegree_Name}
+            {Degree_Name:request.body.Degree_Name}
         )
         .then(result =>{
             response.send(result)
@@ -188,7 +188,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
     app.delete('/updateAPS', (request, response) => {
         
         highschoolApsCollection.deleteOne(
-            {Subject:request.body.oldSubject}
+            {Subject:request.body.Subject}
         )
         .then(result =>{
             response.send(result)
