@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+
+  curriculum_planner_api:
+    container_name: curriculum_planner_api
+    build: .
+    restart: always
+    ports:
+      - "8080:8080"
+    expose:
+      - 8080
