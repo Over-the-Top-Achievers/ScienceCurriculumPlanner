@@ -1,5 +1,9 @@
 const app = require("./mongoCaller.js");
-server =app.listen(8080, () => {
-  console.log("Server has started!");
+
+const PORT = process.env.PORT || 8080;
+
+
+server =app.listen(PORT, () => {
+  console.log(`Server is running at http://localhost:${PORT}`);
 });
 // module.exports = server;
