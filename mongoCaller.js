@@ -48,7 +48,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 
     })
 
-    app.put('/addDegree', (request, response) => {
+    app.post('/addDegree', (request, response) => {
         degreeRequirement.insertOne(
             request.body
         )
