@@ -91,7 +91,7 @@ beforeEach((done) => {
 
     it("should create a new put on addDegree endpoint", async () => {
       const res =await supertest(app)
-        .put("/addDegree")
+        .post("/addDegree")
         .send({
           Degree_Name: 'testDegree_Name',
           Firm_Offer: 'testFirm_Offer'
