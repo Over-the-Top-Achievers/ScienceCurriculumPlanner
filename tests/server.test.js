@@ -89,6 +89,19 @@ beforeEach((done) => {
        
     });
 
+    it("should create a new put on addDegree endpoint", async () => {
+      const res =await supertest(app)
+        .put("/addDegree")
+        .send({
+          Degree_Name: 'testDegree_Name',
+          Firm_Offer: 'testFirm_Offer'
+        })
+        
+      expect(res.statusCode).toEqual(200)
+      //check that we actually editted it
+       
+    });
+
   })
   describe('Post Endpoints',()=>{
     it("should create a new post on courses endpoint", async () => {
