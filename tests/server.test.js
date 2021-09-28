@@ -47,38 +47,6 @@ beforeEach((done) => {
     //check for json body
   })
 
-
-  describe('Post Endpoints',()=>{
-    it("should create a new post on courses endpoint", async () => {
-      const res =await supertest(app)
-        .post("/courses")
-        .send({
-          Course_Code:'test'
-        })
-      expect(res.statusCode).toEqual(200)//for successful create
-    });
-
-    it("should create a new post on updateAPS endpoint", async () => {
-      const res =await supertest(app)
-        .post("/updateAPS")
-        .send({
-          Subject:'testSubject'
-        })
-      expect(res.statusCode).toEqual(200)//for successful create
-    });
-
-    it("should create a new post on updateReq endpoint", async () => {
-      const res =await supertest(app)
-        .post("/updateReq")
-        .send({
-          Degree_Name:'testDegree_Name'
-        })
-      expect(res.statusCode).toEqual(200)//for successful create
-    });
-    
-
-  })
-
   describe('Put Endpoints',()=>{
 
     it("should create a new put on courses endpoint", async () => {
@@ -122,6 +90,38 @@ beforeEach((done) => {
     });
 
   })
+  describe('Post Endpoints',()=>{
+    it("should create a new post on courses endpoint", async () => {
+      const res =await supertest(app)
+        .post("/courses")
+        .send({
+          Course_Code:'test'
+        })
+      expect(res.statusCode).toEqual(200)//for successful create
+    });
+
+    it("should create a new post on updateAPS endpoint", async () => {
+      const res =await supertest(app)
+        .post("/updateAPS")
+        .send({
+          Subject:'testSubject'
+        })
+      expect(res.statusCode).toEqual(200)//for successful create
+    });
+
+    it("should create a new post on updateReq endpoint", async () => {
+      const res =await supertest(app)
+        .post("/updateReq")
+        .send({
+          Degree_Name:'testDegree_Name'
+        })
+      expect(res.statusCode).toEqual(200)//for successful create
+    });
+    
+
+  })
+
+  
 
 
   describe('Delete Endpoints',()=>{

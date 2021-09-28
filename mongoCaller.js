@@ -47,6 +47,17 @@ MongoClient.connect(url, { useUnifiedTopology: true })
         })
 
     })
+
+    app.put('/addDegree', (request, response) => {
+        degreeRequirement.insertOne(
+            request.body
+        )
+        .then(result=>{
+            response.send(result)
+        })
+
+    })
+
     app.get('/degreeReq', (request, response) =>{
         degreeRequirement.find({}).toArray()//searches the database for a course
         .then(result =>{
@@ -119,6 +130,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 
     })
 
+
     app.put('/updateAPS', (request, response) => {
         // console.log(request.body);
         highschoolApsCollection.findOneAndUpdate(
@@ -161,7 +173,6 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 
     })
 
-
     app.delete('/courses', (request, response) => {
         
         courseCollection.deleteOne(
@@ -177,7 +188,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
     app.delete('/updateReq', (request, response) => {
         
         degreeRequirement.deleteOne(
-            {Degree_Name:request.body.newDegree_Name}
+            {Degree_Name:request.body.Degree_Name}
         )
         .then(result =>{
             response.send(result)
@@ -188,7 +199,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
     app.delete('/updateAPS', (request, response) => {
         
         highschoolApsCollection.deleteOne(
-            {Subject:request.body.oldSubject}
+            {Subject:request.body.Subject}
         )
         .then(result =>{
             response.send(result)
