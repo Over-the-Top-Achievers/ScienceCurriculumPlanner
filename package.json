@@ -4,7 +4,7 @@
   "description": "A site where you plan your sciene curriculum",
   "main": "startServer.js",
   "scripts": {
-    "test": "jest  --coverage --detectOpenHandles --runInBand --testTimeout=6000 --bail",
+    "test": "jest --coverage --detectOpenHandles --runInBand --testTimeout=6000 --bail --forceExit",
     "test:badges": "npm run test  && jest-coverage-badges"
   },
   "repository": {
