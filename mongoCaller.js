@@ -68,13 +68,63 @@ MongoClient.connect(url, { useUnifiedTopology: true })
     })
 
     app.get('/subjectsData', (request, response) =>{
-        highschoolApsCollection.find({}).toArray()//searches the database for a course
-        .then(result =>{
-            response.send(JSON.stringify(result))//For display purposes
+        
+        highschoolApsCollection.find({}).toArray()
+        .then(results => {
+
+            // First sort alphabetically
+            var alphabeticalResults = results.sort(function(left, right) {
+                return left.Subject < right.Subject ? -1 : left.Subject > right.Subject ? 1 : 0
+            });
+
+            // Sort a copy by priority and get the top 6
+            var finalResults = [...alphabeticalResults].sort(function(left, right) {
+
+                var leftP = left.hasOwnProperty("Priority") ? left.Priority : 0;
+                var rightP = right.hasOwnProperty("Priority") ? right.Priority : 0;
+
+                return leftP > rightP ? -1 : leftP < rightP ? 1 : 0
+
+            }).slice(0, 6);
+
+            // Add a separator
+            finalResults.push({
+                Subject: '---------------------'
+            });
+
+            // Add the alphabetical results to the final results
+            finalResults = finalResults.concat(alphabeticalResults);
+
+            // Return the sorted result set
+            response.send( JSON.stringify( finalResults ) )
            
         })
         .catch(error => console.error(error))
     })
+
+    app.put('/incrementSubjectPriority', (req, res) => {
+
+        highschoolApsCollection.findOneAndUpdate(
+            {
+                Subject: req.body.Subject
+            },
+            {
+                $set: 
+                {
+                    Priority: 0
+                }
+                // $inc:
+                // {
+                //     Priority: 1
+                // }
+            }
+        )
+        .then( result => {
+            res.send(result)
+        })
+
+    })
+
     app.get('/coursesData', (request, response) =>{
         courseCollection.find({}).toArray()//searches the database for a course
         .then(result =>{

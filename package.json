@@ -2,7 +2,7 @@
   "name": "sciencecurriculumplanner",
   "version": "1.0.0",
   "description": "A site where you plan your sciene curriculum",
-  "main": "index.js",
+  "main": "startServer.js",
   "scripts": {
     "test": "jest  --coverage --detectOpenHandles --runInBand --testTimeout=6000 --bail",
     "test:badges": "npm run test  && jest-coverage-badges"
