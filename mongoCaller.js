@@ -58,13 +58,24 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 
     })
 
+    app.delete('/degrees', (request, response) => {
+        
+        degreeRequirement.deleteOne({
+            Degree_Name:request.body.Degree_Name
+        })
+        .then(result =>{
+            response.send(result)
+        })
+
+    })
+
     app.get('/degreeReq', (request, response) =>{
         degreeRequirement.find({}).toArray()//searches the database for a course
         .then(result =>{
             response.send(JSON.stringify(result))//For display purposes
            
         })
-        .catch(error => console.error(error))
+        //.catch(error => console.error(error))
     })
 
     app.get('/subjectsData', (request, response) =>{
@@ -99,7 +110,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
             response.send( JSON.stringify( finalResults ) )
            
         })
-        .catch(error => console.error(error))
+        //.catch(error => console.error(error))
     })
 
     app.put('/incrementSubjectPriority', (req, res) => {
@@ -131,7 +142,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
             response.send(JSON.stringify(result))//For display purposes
            
         })
-        .catch(error => console.error(error))
+        //.catch(error => console.error(error))
     })
     app.get('/coursesCSV', (request, response) =>{
         courseCollection.find({}).toArray()//searches the database for a course
@@ -260,7 +271,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 
 
   })
-  .catch(error => console.error(error))
+  //.catch(error => console.error(error))
 
   
 
