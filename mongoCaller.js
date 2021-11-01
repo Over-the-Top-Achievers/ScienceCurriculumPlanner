@@ -120,14 +120,14 @@ MongoClient.connect(url, { useUnifiedTopology: true })
                 Subject: req.body.Subject
             },
             {
-                $set: 
-                {
-                    Priority: 0
-                }
-                // $inc:
+                // $set: 
                 // {
-                //     Priority: 1
+                //     Priority: 0
                 // }
+                $inc:
+                {
+                    Priority: 1
+                }
             }
         )
         .then( result => {
