@@ -1,0 +1,3 @@
+{"total": {"lines":{"total":76,"covered":74,"skipped":0,"pct":97.37},"statements":{"total":76,"covered":74,"skipped":0,"pct":97.37},"functions":{"total":35,"covered":33,"skipped":0,"pct":94.29},"branches":{"total":12,"covered":12,"skipped":0,"pct":100}}
+,"/home/runner/work/ScienceCurriculumPlanner/ScienceCurriculumPlanner/mongoCaller.js": {"lines":{"total":76,"covered":74,"skipped":0,"pct":97.37},"functions":{"total":35,"covered":33,"skipped":0,"pct":94.29},"statements":{"total":76,"covered":74,"skipped":0,"pct":97.37},"branches":{"total":12,"covered":12,"skipped":0,"pct":100}}
+}
