@@ -13,12 +13,11 @@ beforeEach((done) => {
       mongoose.connection.close(() => done())
   });
 
-
   describe('Get Data Endpoint',()=>{
     it("returns status code 200 for /coursesData", async () => {
       const res =await supertest(app)
         .get("/coursesData")
-      expect(res.statusCode).toEqual(200)
+      expect(res.statusCode).equal(200)
     })
     //check for json body
   })
@@ -26,7 +25,7 @@ beforeEach((done) => {
     it("returns status code 200 for /coursesCSV", async () => {
       const res =await supertest(app)
         .get("/coursesCSV")
-      expect(res.statusCode).toEqual(200)
+      expect(res.statusCode).equal(200)
     })
     //check for json body
   })
@@ -34,7 +33,7 @@ beforeEach((done) => {
     it("returns status code 200 for /degreeReq", async () => {
       const res =await supertest(app)
         .get("/degreeReq")
-      expect(res.statusCode).toEqual(200)
+      expect(res.statusCode).equal(200)
     })
     //check for json body
   })
@@ -42,12 +41,27 @@ beforeEach((done) => {
     it("returns status code 200 for /subjectsData", async () => {
       const res =await supertest(app)
         .get("/subjectsData")
-      expect(res.statusCode).toEqual(200)
+      expect(res.statusCode).equal(200)
     })
     //check for json body
   })
 
-  describe('Put Endpoints',()=>{
+  describe('Put Endpoints',() => {
+
+    it("should create a new degree", async () => {
+      
+      const res = await supertest(app)
+        .put("/addDegree")
+        .send({
+          Degree_Name: 'test',
+          Firm_Offer: 'test',
+          WaitList: 'test',
+          Reject: 'test'
+        })
+        
+      expect(res.statusCode).equal(200)
+       
+    });
 
     it("should create a new put on courses endpoint", async () => {
       const res =await supertest(app)
@@ -58,7 +72,7 @@ beforeEach((done) => {
           newNQF: 50
         })
         
-      expect(res.statusCode).toEqual(200)
+      expect(res.statusCode).equal(200)
       //check that we actually editted it
        
     });
@@ -71,7 +85,7 @@ beforeEach((done) => {
           newLevel_100_90: 'test',
         })
         
-      expect(res.statusCode).toEqual(200)
+      expect(res.statusCode).equal(200)
       //check that we actually editted it
        
     });
@@ -84,7 +98,19 @@ beforeEach((done) => {
           newFirm_Offer: 'testFirm_Offer'
         })
         
-      expect(res.statusCode).toEqual(200)
+      expect(res.statusCode).equal(200)
+      //check that we actually editted it
+       
+    });
+
+    it("should increment the subject priority", async () => {
+      const res = await supertest(app)
+        .put("/incrementSubjectPriority")
+        .send({
+          Subject: 'testSubject'
+        })
+        
+      expect(res.statusCode).equal(200)
       //check that we actually editted it
        
     });
@@ -97,7 +123,7 @@ beforeEach((done) => {
         .send({
           Course_Code:'test'
         })
-      expect(res.statusCode).toEqual(200)//for successful create
+      expect(res.statusCode).equal(200)//for successful create
     });
 
     it("should create a new post on updateAPS endpoint", async () => {
@@ -106,7 +132,7 @@ beforeEach((done) => {
         .send({
           Subject:'testSubject'
         })
-      expect(res.statusCode).toEqual(200)//for successful create
+      expect(res.statusCode).equal(200)//for successful create
     });
 
     it("should create a new post on updateReq endpoint", async () => {
@@ -115,23 +141,30 @@ beforeEach((done) => {
         .send({
           Degree_Name:'testDegree_Name'
         })
-      expect(res.statusCode).toEqual(200)//for successful create
+      expect(res.statusCode).equal(200)//for successful create
     });
     
 
   })
 
-  
-
-
   describe('Delete Endpoints',()=>{
+
+    it("should delete on degree endpoint", async () => {
+      const res = await supertest(app)
+        .delete("/degrees")
+        .send({
+          Degree_Name: 'test'
+        })
+        expect(res.statusCode).equal(200)
+    });
+
     it("should delete on courses endpoint", async () => {
       const res =await supertest(app)
         .delete("/courses")
         .send({
           courseCode:'test'
         })
-      expect(res.statusCode).toEqual(200)
+      expect(res.statusCode).equal(200)
     });
 
     it("should delete on updateReq endpoint", async () => {
@@ -140,7 +173,7 @@ beforeEach((done) => {
         .send({
           Degree_Name:'testDegree_Name'
         })
-      expect(res.statusCode).toEqual(200)
+      expect(res.statusCode).equal(200)
     });
 
     it("should delete on updateAPS endpoint", async () => {
@@ -149,6 +182,6 @@ beforeEach((done) => {
         .send({
           Subject:'testSubject'
         })
-      expect(res.statusCode).toEqual(200)
+      expect(res.statusCode).equal(200)
     });
   })
